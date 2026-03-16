@@ -103,4 +103,4 @@ MIT License: Free to use, modify, and distribute with attribution.
 ## **Developer**
 **Dimitrios Poulos** <br>
 *Electrical \& Computer Engineering Student*
-* **Release Date:** February 2026
+* **Release Date:** March 2026
