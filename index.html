@@ -1,0 +1,189 @@
+<!--
+    Resistor Color Code Calculator - Structure (HTML)
+    Author: Dimitrios Poulos
+    Description: Main HTML file for the resistor color code calculator.
+-->
+
+
+
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>Resistor Color Code Calculator</title>    <!-- Website Title -->
+
+    <!-- Use of Google Fonts: DM Sans for body text, DM Mono for dropdowns and result -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">    <!-- Main Stylesheet (CSS) -->
+</head>
+
+
+<body>
+    <!-- Main Card Container -->
+    <div class="card">
+
+        <h1>Resistor <small>Color Code</small> <span>Calculator</span></h1>    <!-- Title -->
+
+
+        <div class="svg_box">
+                <svg viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Wires on left and right -->
+                    <line x1="0" y1="40" x2="70" y2="40" stroke="#555" stroke-width="3"/>
+                    <line x1="330" y1="40" x2="400" y2="40" stroke="#555" stroke-width="3"/>
+                    <!-- Resistor body -->
+                    <rect x="70" y="15" width="260" height="46" rx="10" fill="#c49a2a"/>
+                    <!-- Color bands (band4, band5, band6 hidden by default) -->
+                    <rect id="svg_band1" x="100" y="15" width="28" height="46" rx="3" fill="#888888"/>
+                    <rect id="svg_band2" x="145" y="15" width="28" height="46" rx="3" fill="#888888"/>
+                    <rect id="svg_band3" x="190" y="15" width="28" height="46" rx="3" fill="#888888"/>
+                    <rect id="svg_band4" x="235" y="15" width="28" height="46" rx="3" fill="#888888" style="display:none"/>
+                    <rect id="svg_band5" x="265" y="15" width="28" height="46" rx="3" fill="#888888" style="display:none"/>
+                    <rect id="svg_band6" x="295" y="15" width="28" height="46" rx="3" fill="#888888" style="display:none"/>
+                </svg>
+            </div>
+
+
+
+        <!-- Number of Bands Selector -->
+        <div class="bands_number_row">
+            <label>Number of Bands: </label>
+            <select id="bands_number" onchange="update_bands()">    <!-- Use of update_bands() to show/hide band rows appropriately -->
+                <option value="3">3 Bands</option>
+                <option value="4">4 Bands</option>
+                <option value="5">5 Bands</option>
+                <option value="6">6 Bands</option>
+            </select>
+        </div>
+
+
+        <!-- Band 1: Always visible (1st significant digit) -->
+        <div class="band_row">
+            <label id="band1_label">1st Band (1st Digit): </label>
+            <select id="band1" onchange="update_svg()">
+                <option value="" disabled selected>-</option>
+                <option value="1">Brown (1)</option>
+                <option value="2">Red (2)</option>
+                <option value="3">Orange (3)</option>
+                <option value="4">Yellow (4)</option>
+                <option value="5">Green (5)</option>
+                <option value="6">Blue (6)</option>
+                <option value="7">Violet (7)</option>
+                <option value="8">Gray (8)</option>
+                <option value="9">White (9)</option>
+            </select>
+        </div>
+
+
+        <!-- Band 2: Always visible (2nd significant digit) -->
+        <div class="band_row">
+            <label id="band2_label">2nd Band (2nd Digit): </label>
+            <select id="band2" onchange="update_svg()">
+                <option value="" disabled selected>-</option>
+                <option value="0">Black (0)</option>
+                <option value="1">Brown (1)</option>
+                <option value="2">Red (2)</option>
+                <option value="3">Orange (3)</option>
+                <option value="4">Yellow (4)</option>
+                <option value="5">Green (5)</option>
+                <option value="6">Blue (6)</option>
+                <option value="7">Violet (7)</option>
+                <option value="8">Gray (8)</option>
+                <option value="9">White (9)</option>
+            </select>
+        </div>
+
+
+        <!-- Band 3: Always visible (Multiplier for 3-band, 3rd digit for 4/5/6-band) -->
+        <!-- Label and options are updated dynamically by update_bands() -->
+        <div class="band_row">
+            <label id="band3_label">3rd Band (Multiplier): </label>
+            <select id="band3" onchange="update_svg()">
+                <option value="" disabled selected>-</option>
+                <option value="1">Black (x1Ω)</option>
+                <option value="10">Brown (x10Ω)</option>
+                <option value="100">Red (x100Ω)</option>
+                <option value="1000">Orange (x1KΩ)</option>
+                <option value="10000">Yellow (x10ΚΩ)</option>
+                <option value="100000">Green (x100ΚΩ)</option>
+                <option value="1000000">Blue (x1ΜΩ)</option>
+                <option value="10000000">Violet (x10ΜΩ)</option>
+                <option value="100000000">Gray (x100ΜΩ)</option>
+                <option value="1000000000">White (x1GΩ)</option>
+                <option value="0.1">Gold (x0.1Ω)</option>
+                <option value="0.01">Silver (x0.01Ω)</option>
+            </select>
+        </div>
+
+
+        <!-- Band 4: Visible for 4-band (Tolerance) and for 5/6-band (Multiplier) -->
+        <div id="band4_list" class="band_row" style="display:none">
+            <label id="band4_label">4th Band (Tolerance): </label>
+            <select id="band4" onchange="update_svg()">
+                <option value="" disabled selected>-</option>
+                <option value="±1%">Brown (±1%)</option>
+                <option value="±2%">Red (±2%)</option>
+                <option value="±0.5%">Green (±0.5%)</option>
+                <option value="±0.25%">Blue (±0.25%)</option>
+                <option value="±0.1%">Violet (±0.1%)</option>
+                <option value="±5%">Gold (±5%)</option>
+                <option value="±10%">Silver (±10%)</option>
+            </select>
+        </div>
+
+
+        <!-- Band 5: Visible for 5/6-band (Tolerance) -->
+        <!-- Label and options are updated dynamically by update_bands() -->
+        <div id="band5_list" class="band_row" style="display:none">
+            <label id="band5_label">5th Band (Tolerance): </label>
+            <select id="band5" onchange="update_svg()">
+                <option value="" disabled selected>-</option>
+                <option value="±1%">Brown (±1%)</option>
+                <option value="±2%">Red (±2%)</option>
+                <option value="±0.5%">Green (±0.5%)</option>
+                <option value="±0.25%">Blue (±0.25%)</option>
+                <option value="±0.1%">Violet (±0.1%)</option>
+                <option value="±5%">Gold (±5%)</option>
+                <option value="±10%">Silver (±10%)</option>
+            </select>
+        </div>
+
+
+        <!-- Band 6: Visible for 6-band only (Temperature Coefficient) -->
+        <!-- Label and options are updated dynamically by update_bands() -->
+        <div id="band6_list" class="band_row" style="display:none">
+            <label id="band6_label">6th Band (Temperature Coefficient): </label>
+            <select id="band6" onchange="update_svg()">
+                <option value="" disabled selected>-</option>
+                <option value="100ppm/K">Brown (100ppm/K)</option>
+                <option value="50ppm/K">Red (50ppm/K)</option>
+                <option value="15ppm/K">Orange (15ppm/K)</option>
+                <option value="25ppm/K">Yellow (25ppm/K)</option>
+            </select>
+        </div>
+
+
+
+        <button onclick="calculate_resistance()">Calculate</button>    <!-- Calculate Button -->
+
+        <!-- Result Display -->
+        <div class="resistance_result">
+            <div class="result_text">Resistance</div>
+            <div class="result_value" id="resistance_results">--- Ohms (Ω)</div>
+        </div>
+
+
+    </div>
+
+
+
+    <script src="script.js"></script>    <!-- Use of JavaScript -->
+
+    
+</body>
+
+
+</html>

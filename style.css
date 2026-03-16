@@ -1,0 +1,195 @@
+/*
+    Resistor Color Code Calculator - Stylesheet (CSS)
+    Author: Dimitrios Poulos
+    Description: CSS Style for the resistor color code calculator.
+*/
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }    /* Removes default browser style */
+
+
+
+/* Base Layout & Background */
+body
+{
+    font-family: DM Sans, sans-serif;
+    background-color: #f0d8bf;    /* beige background */
+    display: flex;
+    align-items:flex-start;    /* card starts from top */
+    justify-content: center;    /* card centered horizontally */
+    min-height: 100vh;    /* Takes up the full height of the viewport */
+    padding: 0px;
+
+}
+
+
+
+/* Main Container (Card) */
+.card
+{
+    background-color: #ffffff;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);    /* Soft shadow */
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    max-width: 700px;    /* Boundary for maximum width so it doesn't stretch too far on desktop screens */
+    min-height: 50vh;    /* Boundary for minimum height of card */
+}
+
+
+
+/* Styling for header */
+h1
+{
+    font-size: 40px;
+    font-weight: 800;
+    color: #000643;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+/* Styling for "Color Code" */
+h1 small
+{
+    font-size: 20px;
+    font-weight: 400;
+    color: #888888;
+}
+
+/* Highlights the word "Calculator" */
+h1 span
+{
+    color: #dd6a06
+}
+
+
+
+/* Styling for the Number of Bands row on top */
+.bands_number_row
+{
+    background: #eeeded;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+
+
+/* Row styling for bands */
+.band_row
+{
+    display: flex;
+    align-items: center;    /* Vertically centers the label and the select box */
+    justify-content: space-between;    /* Pushes the label to the left and select to the right */
+    padding: 10px;
+    border-bottom: 1px solid #eeeeee;    /* Subtle divider between rows */
+}
+
+
+
+label
+{
+    font-size: 17px;
+    font-weight: bold;
+    color: #555555;
+}
+
+
+
+/* Styling for the dropdown menus */
+select
+{
+    font-family: DM Mono, monospace;
+    font-size: 14px;
+    padding: 10px 15px;
+    width: 200px;    /* Fixed width ensures all dropdowns align vertically */
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    background: #fafafa;
+    cursor: pointer;
+    transition: border-color 0.2s;    /* Smooth transition effect when the user interacts with the input */
+}
+
+/* Visual feedback when the user clicks on a dropdown */
+select:focus
+{
+    border-color: #dd6a06;
+}
+
+
+
+/* Styling for Calculate button */
+button
+{
+    font-size: 20px;
+    background: #001b4a;
+    color: #cccccc;
+    padding: 10px 20px;
+    border: 2px solid #cccccc;
+    border-radius: 10px;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.2s;    /* Smooth transitions for hover effects */
+    margin-top: 20px; 
+}
+
+button:hover
+{
+    background: #dd6a06;
+    color: #000000;
+}
+
+
+
+/* SVG Graphic Container */
+.svg_box
+{
+    background: #1a1a1a;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Ensures the SVG scales responsively without breaking its aspect ratio */
+.svg_box svg
+{
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+
+
+/* Result Display Box */
+.resistance_result
+{
+    background: #000643;
+    display: flex;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 15px 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Styling for the text of result*/
+.result_text
+{
+    font-size: 20px;
+    color: #cccccc;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Styling for the value of result*/
+.result_value
+{
+    font-size: 25px;
+    color: #dd6a06;
+    font-weight: bold;
+}
