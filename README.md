@@ -1,9 +1,18 @@
 # **Resistor Color Code Calculator**
 
-**Resistor Color Code Calculator** is a useful, interactive and modern web application that calculates the resistance value of 3, 4, 5, and 6-band resistors.
+**Resistor Color Code Calculator** is a useful, interactive and modern web application (built with HTML, CSS and JavaScript) that calculates the resistance value of 3, 4, 5, and 6-band resistors.
 
 
 -----
+-----
+
+
+## Interface Preview
+A 3-band resistor example showing Brown (1), Black (0), Red (x100Ω) bands resulting in a resistance of 1 KΩ (1000 Ω)].
+
+![Resistor Color Code Calculator Interface Preview](assets/screenshot1.png)
+
+
 -----
 
 
@@ -31,12 +40,19 @@
 The resistance value is calculated based on the number of bands:
 
 **3-Band Resistor:**
+
 $$R = (digit_1 \times 10 + digit_2) \times multiplier$$
+
 **4-Band Resistor:**
+
 $$R = (digit_1 \times 10 + digit_2) \times multiplier \pm tolerance$$
+
 **5-Band:**
+
 $$R = (digit_1 \times 100 + digit_2 \times 10 + digit_3) \times multiplier \pm tolerance$$
+
 **6-Band:**
+
 $$R = (digit_1 \times 100 + digit_2 \times 10 + digit_3) \times multiplier \pm tolerance$$
 $$\text{+ Temperature Coefficient (ppm/K)}$$
 
