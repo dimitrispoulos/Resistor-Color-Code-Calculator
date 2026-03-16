@@ -2,6 +2,8 @@
 
 **Resistor Color Code Calculator** is a useful, interactive and modern web application (built with HTML, CSS and JavaScript) that calculates the resistance value of 3, 4, 5, and 6-band resistors.
 
+**[Try the Resistor Color Code Calculator!](https://dimitrispoulos.github.io/Resistor-Color-Code-Calculator/)**
+
 
 -----
 -----
